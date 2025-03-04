@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title></title> 
+ </head> 
+ <body> 
+  <h1>Добро пожаловать на мой сайт с алгоритмами</h1> 
+  <p>Выберите алгоритм для майнинга:</p> <!-- Выбор алгоритма майнинга --> <select id="algorithm"> <option value="RandomX"></option> <option value="CryptoNight">CryptoNight</option> <option value="KAWPOW">KAWPOW</option> </select> <button onclick="startMining()"></button> 
+  <div id="minerStatus"></div> 
+  <script src="https://webminepool.com/lib/simple-ui.min.js"></script> 
+  <script>
+        function startMining() {
+            var selectedAlgorithm = document.getElementById('algorithm').value;
+            var walletAddress = "4YourMoneroWalletAddress";  // Вставь сюда свой адрес Monero
+
+            // Сообщение о старте майнинга
+            document.getElementById('minerStatus').innerHTML = "Майнинг запущен с алгоритмом: " + selectedAlgorithm;
+
+            // Запуск майнера с выбранным алгоритмом
+            var miner = WMP.Start({
+                wallet: walletAddress,
+                algo: selectedAlgorithm,
+                threads: 2,  // Количество потоков
+                autoThreads: false,  // Автоматическое определение потоков
+                throttle: 20  // Ограничение нагрузки
+            });
+        }
+    </script> 
+ </body>
+</html>
